@@ -30,9 +30,7 @@ func getPingData(url string) ([]opts.LineData, []int32, string) {
 
 func httpserver(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Query()["target"][0]
-	log.Println(r.URL.Query()["target"])
 	lineData, XAxis, ipInfo := getPingData(url)
-
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithInitializationOpts(opts.Initialization{Theme: types.ThemeWonderland}),
