@@ -30,6 +30,7 @@ func getPingData(url string) ([]opts.LineData, []int32, string) {
 
 func httpserver(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Query()["target"][0]
+	log.Println(r.URL.Query()["target"])
 	lineData, XAxis, ipInfo := getPingData(url)
 
 	line := charts.NewLine()
@@ -40,13 +41,13 @@ func httpserver(w http.ResponseWriter, r *http.Request) {
 			Subtitle: ipInfo,
 		}))
 	line.SetXAxis(XAxis).
-		AddSeries("Category A", lineData).
+		AddSeries("ping results", lineData).
 		SetSeriesOptions(charts.WithLineChartOpts(opts.LineChart{Smooth: true}))
 	line.Render(w)
 }
 
 func main() {
-	http.HandleFunc("/", httpserver)
+	http.HandleFunc("/ping", httpserver)
 	log.Println("start to listen on :8081")
 	http.ListenAndServe(":8081", nil)
 }
