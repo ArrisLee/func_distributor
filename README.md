@@ -1,4 +1,4 @@
-# ping-chart
+# pingchart
 
 ## a pinger service for fun
 
