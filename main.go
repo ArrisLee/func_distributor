@@ -12,7 +12,9 @@ import (
 )
 
 func getPingData(url string) ([]opts.LineData, []int32, string) {
+	// init pinger
 	pinger, _ := ping.NewPinger(url)
+	// set ping attempt counts 
 	pinger.Count = 10
 	pinger.Run()
 	var rttsMS []int64
