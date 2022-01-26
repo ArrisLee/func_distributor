@@ -4,3 +4,7 @@
 
 - go-echarts
 - pinger
+
+```sh
+/ping?taget=example.com
+```
